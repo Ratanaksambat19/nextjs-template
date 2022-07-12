@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
-import { getDomain } from '../../util/dev';
+import { getDomain } from 'util/dev';
 
 export default function HeadNextSeo({ linkTo, seo }) {
   return (

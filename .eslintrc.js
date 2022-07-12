@@ -4,7 +4,12 @@ module.exports = {
     es2021: true,
     node: true,
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:import/recommended',
+    'prettier',
+  ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
@@ -17,6 +22,11 @@ module.exports = {
   settings: {
     react: {
       version: 'latest',
+    },
+    'import/resolver': {
+      node: {
+        paths: ['src'],
+      },
     },
   },
 };

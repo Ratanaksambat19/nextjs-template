@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeadNextSeo from '../components/Layout/HeadSeo';
+import HeadNextSeo from 'components/Layout/HeadSeo';
 
 export default function MainLayout({ children, seo, linkTo }) {
   return (
