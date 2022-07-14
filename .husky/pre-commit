@@ -1,5 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
+yarn lint-staged
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
@@ -40,3 +41,4 @@ npm run build ||
 
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
+npx --no-install lint-staged
