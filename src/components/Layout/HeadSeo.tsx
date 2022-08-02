@@ -1,10 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
 import { getDomain } from 'util/dev';
+import { seo } from 'types/interface/seo';
 
-export default function HeadNextSeo({ linkTo, seo }) {
+export default function HeadNextSeo({
+  linkTo,
+  seo,
+}: {
+  linkTo: string;
+  seo: seo;
+}) {
   return (
     <div>
       <Head>
@@ -67,8 +73,3 @@ export default function HeadNextSeo({ linkTo, seo }) {
     </div>
   );
 }
-
-HeadNextSeo.propTypes = {
-  linkTo: PropTypes.string,
-  seo: PropTypes.object,
-};

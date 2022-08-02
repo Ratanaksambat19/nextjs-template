@@ -9,6 +9,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:import/recommended',
     'plugin:jsx-a11y/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:import/typescript',
     'prettier',
   ],
   parserOptions: {
@@ -18,8 +20,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'jsx-a11y'],
+  plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
+  parser: '@typescript-eslint/parser',
   rules: {
+    'react/jsx-filename-extension': ['warn', { extensions: ['.tsx'] }],
     'jsx-a11y/alt-text': [
       2,
       {
@@ -40,13 +44,7 @@ module.exports = {
         paths: ['src', 'components'],
       },
       alias: {
-        map: [
-          ['@', './src'],
-          ['@components', './src/components'],
-          ['@common', './src/components/Common'],
-          ['@layout', './src/components/Layout'],
-          ['@constants', './src/constants'],
-        ],
+        map: [['', './src']],
       },
     },
   },
