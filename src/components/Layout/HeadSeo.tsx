@@ -1,15 +1,17 @@
 import React from 'react';
 import Head from 'next/head';
-import { NextSeo } from 'next-seo';
+import { FAQPageJsonLd, NextSeo } from 'next-seo';
 import { getDomain } from 'util/dev';
-import { seo } from 'types/interface/seo';
+import { Seo } from 'types/interface/seo';
+import { AppLink } from 'constants/appLink';
+import { asFaq, faqDefault } from 'util/seoFormat';
 
 export default function HeadNextSeo({
   linkTo,
   seo,
 }: {
   linkTo: string;
-  seo: seo;
+  seo: Seo;
 }) {
   return (
     <div>
@@ -22,24 +24,32 @@ export default function HeadNextSeo({
         <link
           rel="apple-touch-icon"
           sizes="180x180"
-          href="/images/apple-touch-icon.png"
+          href="/favicon/apple-touch-icon.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="/images/favicon-32x32.png"
+          href="/favicon/favicon-32x32.png"
         />
         <link
           rel="icon"
           type="image/png"
           sizes="16x16"
-          href="/images/favicon-16x16.png"
+          href="/favicon/favicon-16x16.png"
         />
-        <link rel="manifest" href="/manifest.json" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="manifest" href="/favicon/manifest.json" />
+        <link
+          rel="mask-icon"
+          href="/favicon/safari-pinned-tab.svg"
+          color="#5bbad5"
+        />
+        <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico" />
+        <link
+          rel="shortcut icon"
+          type="image/x-icon"
+          href="/favicon/favicon.ico"
+        />
 
         <meta name="msapplication-TileColor" content="#da532c" />
         <meta name="theme-color" content="#ffffff" />
@@ -60,8 +70,16 @@ export default function HeadNextSeo({
             seo?.description !== ''
               ? seo?.description
               : 'A short description goes here.',
-          images: [{ url: `${getDomain()}${seo?.images}` }],
-          site_name: 'Sa gaming',
+          images: [
+            {
+              url:
+                seo?.default && seo.images.length !== 0
+                  ? AppLink.urlLink + seo?.images[0]?.url
+                  : AppLink.cmsLink + seo?.images[0]?.url,
+              alt: seo?.title,
+            },
+          ],
+          site_name: 'Holaplay',
           type: 'website',
         }}
         twitter={{
@@ -69,6 +87,9 @@ export default function HeadNextSeo({
           site: '@site',
           cardType: 'summary_large_image',
         }}
+      />
+      <FAQPageJsonLd
+        mainEntity={seo?.faq?.length > 0 ? asFaq(seo?.faq) : faqDefault}
       />
     </div>
   );
